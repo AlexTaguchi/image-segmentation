@@ -1,3 +1,5 @@
+# Real-time human segmentation with a web camera
+
 # Modules
 import cv2
 import matplotlib.pyplot as plt
