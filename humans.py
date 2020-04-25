@@ -27,8 +27,9 @@ preprocess = transforms.Compose([
 capture = cv2.VideoCapture(0)
 while(True):
 
-    # Capture video frame
+    # Capture mirror image video frame
     _, frame = capture.read()
+    frame = cv2.flip(frame, 1)
 
     # Convert frame to tensor
     frame_tensor = preprocess(frame).unsqueeze(0).to(device)
