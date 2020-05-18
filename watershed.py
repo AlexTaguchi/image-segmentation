@@ -4,9 +4,6 @@
 import cv2
 import numpy as np
 
-# Randomize color pallete
-colors = np.random.randint(256, size=(100, 3))
-
 # Start camera capture
 capture = cv2.VideoCapture(0)
 while(True):
@@ -25,8 +22,10 @@ while(True):
 
     # Apply watershed algorithm
     markers = cv2.watershed(frame, markers)
+    frame[markers == -1] = 0
     for i in range(marker):
-        frame[markers == i] = colors[i]
+        color = frame[markers == i].mean(axis=0)
+        frame[markers == i] = color
 
     # Display frame with overlay
     cv2.imshow('frame', frame)
